@@ -10,6 +10,7 @@ function writePassword() {
   var charSpecial = ["!","\"","#","$","%","&","\'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","\`","{","|","}","~"];
   var charUpperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   var charLowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var allCharacters = [charNumbers + charSpecial + charUpperCase + charLowerCase]
 
   // user decisions defined here
   var confirmCharLen = window.prompt("How many characters do you want your password to be? [8-128]");
@@ -30,7 +31,7 @@ function writePassword() {
     var characterNum = pwLength/charTypes
     if (characterNum % 1 != 0) {characterNum = Math.floor(characterNum)}
 
-    return pwLength/characterNum, pwLength % characterNum
+    return [characterNum, pwLength % characterNum]
   }
 
 
@@ -71,9 +72,23 @@ function writePassword() {
   // series of if evaluators to determine which characters the user desires, using randCharCount to determine how many of each character to include.
   // if totalCharCount > confirmCharCount Then 
   function generatePassword() {
-    
 
-    return pwCharSelector(charCounter(parseInt(confirmCharLen))[0]);
+    var charTypes = 0
+    if (confirmCharNum) {charTypes += 1}
+    if (confirmCharSpecial) {charTypes += 1}
+    if (confirmCharUpper) {charTypes += 1}
+    if (confirmCharLower) {charTypes += 1}
+    else charTypes = 1
+    
+    var password = pwCharSelector(charCounter(parseInt(confirmCharLen))[0]);
+    debugger;
+    if (confirmCharLen % charTypes > 0) {
+      for(var i=0; i<(confirmCharLen % charTypes); i++) {
+        password += allCharacters[randomIndex(allCharacters)]
+      }
+    }
+
+    return password
 
   };
 
