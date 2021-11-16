@@ -19,14 +19,16 @@ function writePassword() {
   var confirmCharUpper = confirm("Would you like upper case letters in your password?");
   var confirmCharLower = confirm("Would you like lower case letters in your password?");
 
+  // count types of characters used
+  var charTypes = 0
+  if (confirmCharNum) {charTypes += 1}
+  if (confirmCharSpecial) {charTypes += 1}
+  if (confirmCharUpper) {charTypes += 1}
+  if (confirmCharLower) {charTypes += 1}
+  else if (charTypes === 0) {charTypes = 1}
+
 
   function charCounter(pwLength) {
-    var charTypes = 0
-    if (confirmCharNum) {charTypes += 1}
-    if (confirmCharSpecial) {charTypes += 1}
-    if (confirmCharUpper) {charTypes += 1}
-    if (confirmCharLower) {charTypes += 1}
-    else charTypes = 1
 
     var characterNum = pwLength/charTypes
     if (characterNum % 1 != 0) {characterNum = Math.floor(characterNum)}
@@ -73,16 +75,8 @@ function writePassword() {
   // if totalCharCount > confirmCharCount Then 
   function generatePassword() {
 
-    var charTypes = 0
-    if (confirmCharNum) {charTypes += 1}
-    if (confirmCharSpecial) {charTypes += 1}
-    if (confirmCharUpper) {charTypes += 1}
-    if (confirmCharLower) {charTypes += 1}
-    else charTypes = 1
-
     var password = pwCharSelector(charCounter(parseInt(confirmCharLen)));
     var remainder = confirmCharLen % charTypes
-    debugger;
     if (remainder > 0) {
       for(var i=0; i<remainder; i++) {
         password += allCharacters[randomIndex(allCharacters.length)]
