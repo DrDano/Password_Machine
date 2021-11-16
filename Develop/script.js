@@ -32,7 +32,7 @@ function writePassword() {
 
 
   var randomIndex = function(indexLen) {
-    var randInd = (indexLen * Math.random);
+    var randInd = Math.ceil((indexLen * Math.random()));
     return randInd;
   }
 
@@ -70,7 +70,7 @@ function writePassword() {
   function generatePassword() {
     
 
-    return pwCharSelector(charCounter(confirmCharLen));
+    return pwCharSelector(charCounter(parseInt(confirmCharLen)));
 
   };
 
