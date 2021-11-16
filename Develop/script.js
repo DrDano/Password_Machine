@@ -18,7 +18,15 @@ function writePassword() {
   // series of if evaluators to determine which characters the user desires, using randCharCount to determine how many of each character to include.
   // if totalCharCount > confirmCharCount Then 
   function generatePassword() {
+    confirmCharLen
+    confirmCharNum
+    confirmCharSpecial
+    confirmCharUpper
+    confirmCharLower
 
+    
+
+    return 1
   };
 
   // function to output number of each array of characters to use in password
@@ -28,8 +36,39 @@ function writePassword() {
     if (confirmCharSpecial) {charTypes += 1}
     if (confirmCharUpper) {charTypes += 1}
     if (confirmCharLower) {charTypes += 1}
+    else charTypes = 1
 
     return pwLength/charTypes
+  }
+
+  var randomIndex = function(indexLen) {
+    var randInd = (indexLen * Math.random);
+    return randInd;
+  }
+
+  var passwordCharSelector = function(charTypeCount) {
+    var password = ""
+    if (confirmCharNum) {
+      for (var i=0; i<charTypeCount; i++) {
+        password += charNumbers[randomIndex]
+      };
+    }
+    if (confirmCharSpecial) {
+      for (var i=0; i<charTypeCount; i++) {
+        password += charSpecial[randomIndex]
+      };
+    }
+    if (confirmCharUpper) {
+      for (var i=0; i<charTypeCount; i++) {
+        password += charUpperCase[randomIndex]
+      };
+    }
+    if (confirmCharLower) {
+      for (var i=0; i<charTypeCount; i++) {
+        password += charLowerCase[randomIndex]
+    }
+
+    return password;
   }
 
 
