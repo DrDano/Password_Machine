@@ -27,12 +27,15 @@ function writePassword() {
     if (confirmCharLower) {charTypes += 1}
     else charTypes = 1
 
-    return pwLength/charTypes
+    var characterNum = pwLength/charTypes
+    if (characterNum % 1 != 0) {characterNum = Math.floor(characterNum)}
+
+    return pwLength/characterNum, pwLength % characterNum
   }
 
 
   var randomIndex = function(indexLen) {
-    var randInd = Math.ceil((indexLen * Math.random()));
+    var randInd = Math.floor((indexLen * Math.random()));
     return randInd;
   }
 
@@ -70,7 +73,7 @@ function writePassword() {
   function generatePassword() {
     
 
-    return pwCharSelector(charCounter(parseInt(confirmCharLen)));
+    return pwCharSelector(charCounter(parseInt(confirmCharLen))[0]);
 
   };
 
