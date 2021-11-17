@@ -78,10 +78,13 @@ function writePassword() {
 
     var password = pwCharSelector(charCounter(parseInt(confirmCharLen)));
     var remainder = confirmCharLen % charTypes
-    
+    var charArrayNames = ["charNumbers", "charSpecial", "charUpperCase", "charLowerCase"]
+    var randCharArrName = charArrayNames[randomIndex(charArrayNames.length)]
+    debugger;
     if (remainder > 0) {
       for(var i=0; i<remainder; i++) {
-        password += charArrays[randomIndex(Object.keys(charArrays).length)]
+        newChar = charArrays[randCharArrName][9]
+        password += newChar
       }
     }
 
