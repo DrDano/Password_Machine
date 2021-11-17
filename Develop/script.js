@@ -6,11 +6,12 @@ function writePassword() {
   
 
   // character variables defined here
-  var charNumbers = [1,2,3,4,5,6,7,8,9];
-  var charSpecial = ["!","\"","#","$","%","&","\'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","\`","{","|","}","~"];
-  var charUpperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-  var charLowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  var allCharacters = [1,2,3,4,5,6,7,8,9,"!","\"","#","$","%","&","\'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","\`","{","|","}","~","A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z","a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  var charArrays = {
+    charNumbers: [1,2,3,4,5,6,7,8,9],
+    charSpecial: ["!","\"","#","$","%","&","\'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","\`","{","|","}","~"],
+    charUpperCase: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+    charLowerCase: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  };
 
   // user decisions defined here
   var confirmCharLen = window.prompt("How many characters do you want your password to be? [8-128]");
@@ -47,22 +48,22 @@ function writePassword() {
     var password = ""
     if (confirmCharNum) {
       for (var i=0; i<charTypeCount; i++) {
-        password += charNumbers[randomIndex(charNumbers.length)]
+        password += charArrays.charNumbers[randomIndex(charArrays.charNumbers.length)]
       };
     }
     if (confirmCharSpecial) {
       for (var i=0; i<charTypeCount; i++) {
-        password += charSpecial[randomIndex(charSpecial.length)]
+        password += charArrays.charSpecial[randomIndex(charArrays.charSpecial.length)]
       };
     }
     if (confirmCharUpper) {
       for (var i=0; i<charTypeCount; i++) {
-        password += charUpperCase[randomIndex(charUpperCase.length)]
+        password += charArrays.charUpperCase[randomIndex(charArrays.charUpperCase.length)]
       };
     }
     if (confirmCharLower) {
       for (var i=0; i<charTypeCount; i++) {
-        password += charLowerCase[randomIndex(charLowerCase.length)]
+        password += charArrays.charLowerCase[randomIndex(charArrays.charLowerCase.length)]
       }
     }
     return password;
@@ -77,9 +78,10 @@ function writePassword() {
 
     var password = pwCharSelector(charCounter(parseInt(confirmCharLen)));
     var remainder = confirmCharLen % charTypes
+    
     if (remainder > 0) {
       for(var i=0; i<remainder; i++) {
-        password += allCharacters[randomIndex(allCharacters.length)]
+        password += charArrays[randomIndex(Object.keys(charArrays).length)]
       }
     }
 
