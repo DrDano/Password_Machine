@@ -2,7 +2,7 @@
 This application generates a random password based on user selections, and keeps your digital world safe!
 
 ## Application Working Example
-[Working Example gif](https://github.com/DrDano/Password_Machine/blob/3d66a46b0fb3da77f79aabec17a2520f1f2777b3/Assets/Images/PasswordMachine.gif)
+![Working Example gif](https://github.com/DrDano/Password_Machine/blob/3d66a46b0fb3da77f79aabec17a2520f1f2777b3/Assets/Images/PasswordMachine.gif)
 
 
 ## Link to Deployment
