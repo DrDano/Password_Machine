@@ -110,7 +110,7 @@ function writePassword() {
 
   };
 
-  // create copy to clipboard button
+  // create copy to clipboard button?
 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
