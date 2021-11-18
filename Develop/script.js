@@ -15,6 +15,10 @@ function writePassword() {
 
   // user decisions defined here
   var confirmCharLen = window.prompt("How many characters do you want your password to be? [8-128]");
+  while (confirmCharLen < 8 || confirmCharLen > 128) {
+    alert("Password must be between 8-128 characters in length, please try again.")
+    var confirmCharLen = window.prompt("How many characters do you want your password to be? [8-128]");
+  }
   var confirmCharNum = confirm("Would you like numbers in your password?");
   var confirmCharSpecial = confirm("Would you like special characters in your password?");
   var confirmCharUpper = confirm("Would you like upper case letters in your password?");
@@ -80,7 +84,7 @@ function writePassword() {
     var remainder = confirmCharLen % charTypes
 
     debugger;
-    if (remainder > 0) {
+    if (remainder > 0 && confirmCharLen <= 128) {
       var indext = 0
       if (confirmCharNum != true){indext = 1}
       if(confirmCharSpecial != true){indext = 2}
@@ -111,8 +115,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-// var charArrayNames = ["charNumbers", "charSpecial", "charUpperCase", "charLowerCase"]
-// var randCharArrName = charArrayNames[randomIndex(charArrayNames.length)]
