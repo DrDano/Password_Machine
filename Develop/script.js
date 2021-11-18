@@ -19,10 +19,19 @@ function writePassword() {
     alert("Password must be between 8-128 characters in length, please try again.")
     var confirmCharLen = window.prompt("How many characters do you want your password to be? [8-128]");
   }
+
   var confirmCharNum = confirm("Would you like numbers in your password?");
   var confirmCharSpecial = confirm("Would you like special characters in your password?");
   var confirmCharUpper = confirm("Would you like upper case letters in your password?");
   var confirmCharLower = confirm("Would you like lower case letters in your password?");
+
+  while(confirmCharNum === false && confirmCharSpecial === false && confirmCharUpper === false && confirmCharLower === false) {
+    alert("You did not select any character types, please select at least one type.")
+    var confirmCharNum = confirm("Would you like numbers in your password?");
+    var confirmCharSpecial = confirm("Would you like special characters in your password?");
+    var confirmCharUpper = confirm("Would you like upper case letters in your password?");
+    var confirmCharLower = confirm("Would you like lower case letters in your password?");
+  }
 
   // count types of characters used
   var charTypes = 0
@@ -76,21 +85,21 @@ function writePassword() {
 
 
   //define function generatePassword which will be the final step in generating the password
-  // series of if evaluators to determine which characters the user desires, using randCharCount to determine how many of each character to include.
-  // if totalCharCount > confirmCharCount Then 
   function generatePassword() {
 
     var password = pwCharSelector(charCounter(parseInt(confirmCharLen)));
     var remainder = confirmCharLen % charTypes
 
-    debugger;
+    // if there is a remainder, find the index of a type that is true and use that type's array to fill the remainder
     if (remainder > 0 && confirmCharLen <= 128) {
       var indext = 0
-      if (confirmCharNum != true){indext = 1}
-      if(confirmCharSpecial != true){indext = 2}
-      if(confirmCharUpper != true){indext = 3}
-      if (confirmCharLower != true){indext = 0}
 
+      var confirmArr = [confirmCharNum, confirmCharSpecial, confirmCharUpper, confirmCharLower]
+
+      for (let i = 0; i < confirmArr.length; i++) {
+        if (confirmArr[i]) {indext = i};
+      }
+      
       for(var i=0; i<remainder; i++) {
         newChar = Object.values(charArrays)[indext]
         password += newChar[1]
@@ -100,8 +109,6 @@ function writePassword() {
     return password
 
   };
-
-  // prompt user for input of 8-128 characters
 
   // create copy to clipboard button
 
