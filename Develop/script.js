@@ -78,13 +78,18 @@ function writePassword() {
 
     var password = pwCharSelector(charCounter(parseInt(confirmCharLen)));
     var remainder = confirmCharLen % charTypes
-    var charArrayNames = ["charNumbers", "charSpecial", "charUpperCase", "charLowerCase"]
-    var randCharArrName = charArrayNames[randomIndex(charArrayNames.length)]
+
     debugger;
     if (remainder > 0) {
+      var indext = 0
+      if (confirmCharNum != true){indext = 1}
+      if(confirmCharSpecial != true){indext = 2}
+      if(confirmCharUpper != true){indext = 3}
+      if (confirmCharLower != true){indext = 0}
+
       for(var i=0; i<remainder; i++) {
-        newChar = charArrays[randCharArrName][9]
-        password += newChar
+        newChar = Object.values(charArrays)[indext]
+        password += newChar[1]
       }
     }
 
@@ -107,3 +112,7 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+
+
+// var charArrayNames = ["charNumbers", "charSpecial", "charUpperCase", "charLowerCase"]
+// var randCharArrName = charArrayNames[randomIndex(charArrayNames.length)]
