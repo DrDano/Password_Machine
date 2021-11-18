@@ -41,7 +41,7 @@ function writePassword() {
   if (confirmCharLower) {charTypes += 1}
   else if (charTypes === 0) {charTypes = 1}
 
-
+  // Determine the count of each character to use. If the count of a character type is not evenly divisible by 1 then round it down.
   function charCounter(pwLength) {
 
     var characterNum = pwLength/charTypes
@@ -50,13 +50,13 @@ function writePassword() {
     return characterNum
   }
 
-
+  // used to get a random index for any array
   var randomIndex = function(indexLen) {
     var randInd = Math.floor((indexLen * Math.random()));
     return randInd;
   }
 
-
+  // if the user selected the type, then randomly index out the amount of characters for that type, and do this for each type the user desires
   function pwCharSelector(charTypeCount) {
     var password = ""
     if (confirmCharNum) {
