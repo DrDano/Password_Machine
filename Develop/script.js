@@ -13,6 +13,8 @@ function writePassword() {
     charLowerCase: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
   };
 
+  var validate = false
+  while (validate === false) {
   // user decisions defined here
   var confirmCharLen = window.prompt("How many characters do you want your password to be? [8-128]");
   while (confirmCharLen < 8 || confirmCharLen > 128) {
@@ -32,6 +34,10 @@ function writePassword() {
     var confirmCharUpper = confirm("Would you like upper case letters in your password?");
     var confirmCharLower = confirm("Would you like lower case letters in your password?");
   }
+
+  validate = confirm("Are you sure you want to use these character types?")
+
+  };
 
   // count types of characters used
   var charTypes = 0
